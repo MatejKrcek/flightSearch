@@ -32,10 +32,26 @@ def noDirectConnection(arrival):
                         nextDepartureDate = datetime.datetime.strptime(
                             (semiResults[int][3]), "%Y-%m-%dT%H:%M:%S")
 
-                        if (nextDepartureDate > arrivalDate):
-                            results.append([row, semiResults[0]])
+                        if ((nextDepartureDate - arrivalDate) > (datetime.timedelta(hours=1)) and (nextDepartureDate - arrivalDate) < (datetime.timedelta(hours=6))):
+                            results.append([row, semiResults[int]])
 
         listOfMultiResults = results
+
+        #* sorting algo
+        prices = []
+        index = []
+        price = 0
+        i = 0
+        for item in listOfMultiResults:
+            for element in item:
+                price = price + float(element[5])
+            i = i + 1
+            index.append(i-1)
+            prices.append(price)
+            price = 0
+        prices, index = zip(*sorted(zip(prices, index)))
+        listOfMultiResults = [x for _,x in sorted(zip(index,listOfMultiResults))] 
+        
         print(listOfMultiResults)
 
 
@@ -55,6 +71,5 @@ def searchFlight(departure, arrival):
         noDirectConnection(arrival)
     else:
         print(listOfSingleResults)
-
 
 searchFlight(originDestination, finalDestination)
