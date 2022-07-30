@@ -47,4 +47,4 @@ python3 kiwiWeekend.py data.csv PRG STN --bags=3
 
 ## Things to improve
 
-- 
+The program currently shows flights based on this assumption - if there is a direct connection (from A -> B), show the connection (A -> B). If there is no direct connectino, look for stops (A-> B -> C). It could show both result. I believe direct flights are always cheaper, so in the end it doesn't matter.
