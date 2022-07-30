@@ -31,8 +31,29 @@ python3 kiwiWeekend.py data.csv PRG STN --bags=3
 ```
 
 **Example output**
-```
-[['FR1274', 'PRG', 'STN', '2021-09-01T01:50:00', '2021-09-01T05:55:00', '142.0', '14', '3']]
+```json
+[
+  {
+    "flights": [
+      {
+        "flight_no": "FR1374",
+        "origin": "PRG",
+        "destination": "STN",
+        "departure": "2021-09-19T05:00:00",
+        "arrival": "2021-09-19T06:00:00",
+        "base_price": 18.0,
+        "bag_price": 10.0,
+        "bags_allowed": 2
+      }
+    ], 
+    "bags_allowed": 2,
+    "bags_count": 0,
+    "destination": "PRG",
+    "origin": "BRN",
+    "total_price": 38.0,
+    "travel_time": "1:00:00"
+  }
+]
 ```
 
 
@@ -47,4 +68,4 @@ python3 kiwiWeekend.py data.csv PRG STN --bags=3
 
 ## Things to improve
 
-The program currently shows flights based on this assumption - if there is a direct connection (from A -> B), show the connection (A -> B). If there is no direct connectino, look for stops (A-> B -> C). It could show both result. I believe direct flights are always cheaper, so in the end it doesn't matter.
+The program currently shows flights based on this assumption - if there is a direct connection (from A -> B), show the connection (A -> B). If there is no direct connection, look for stops (A-> B -> C). It could show both result. I believe direct flights are always cheaper, so in the end it doesn't matter.
