@@ -22,21 +22,18 @@ listOfMultiResults = []
 semiResults = []
 
 
-# ! TOTAL PRICE = TICEKTS a BAG prices!!!!!!!!
-
 def noDirectConnection(arrival):
+    if args.bags == None:
+        bagsRequired = 0
+
     results = []
     try:
         with open(dataSource, 'rt')as f:
             data = csv.reader(f)
 
             for row in data:
-                if args.bags:
-                    if arrival == row[2] and bagsRequired <= int(row[7]):
-                        semiResults.append(row)
-                else:
-                    if arrival == row[2]:
-                        semiResults.append(row)
+                if arrival == row[2] and bagsRequired <= int(row[7]):
+                    semiResults.append(row)
 
             for i in range(len(semiResults)):
                 with open(dataSource, 'rt')as f:
@@ -114,88 +111,25 @@ def noDirectConnection(arrival):
                 }]
 
                 listOfFlights.append(preOutput)
-            
+
             output = json.dumps(listOfFlights)
-            # print(output[1:-1])
-            print(output[0])
-
-            # preOutput["flights"] = firstConnection
-
-            # for index in range(len(element)):
-            #     print(index)
-            #     outputSingleFlight = [
-            #         {"flight_no": element[index][0],
-            #          "origin": element[index][1],
-            #          "destination": element[index][2],
-            #          "departure": element[index][3],
-            #          "arrival": element[index][4],
-            #          "base_price": float(element[index][5]),
-            #          "bag_price": float(element[index][6]),
-            #          "bags_allowed": int(element[index][7])},
-            #     ]
-            #     # "bags_allowed": int(element[7]),
-            #     # "bags_count": int(bagsRequired),
-            #     # "destination": finalDestination,
-            #     # "origin": originDestination,
-            #     # "total_price": float(element[5]),
-            #     # "travel_time": str(totalFlightTime)
-
-            #     listOfFlights.append(outputSingleFlight)
-
-            # preOutput["flights"] = listOfFlights[0][0]
-            # preOutput["flights"] = listOfFlights[1][0]
-
-            # preOutput["bags_allowed"] = int(max(
-            #     preOutput["flights"][0]["bags_allowed"], preOutput["flights"][1]["bags_allowed"]))
-            # preOutput["bags_count"] = int(bagsRequired)
-            # preOutput["destination"] = finalDestination
-            # preOutput["origin"] = originDestination
-            # preOutput["total_price"] = float(
-            #     preOutput["flights"][0]["base_price"] + preOutput["flights"][1]["base_price"])
-            # preOutput["travel_time"] = str(totalFlightTime)
-
-            # outputList.append(preOutput)
-
-            # outputMultiFlight = []
-            # outputMultiFlight.append(listOfFlights[0][0])
-            # outputMultiFlight.append(listOfFlights[1][0])
-
-            # preOutput["flights"] = outputMultiFlight
-            # preOutput["bags_allowed"] = int(max(
-            #     preOutput["flights"][0]["bags_allowed"], preOutput["flights"][1]["bags_allowed"]))
-            # preOutput["bags_count"] = int(bagsRequired)
-            # preOutput["destination"] = finalDestination
-            # preOutput["origin"] = originDestination
-            # preOutput["total_price"] = float(
-            #     preOutput["flights"][0]["base_price"] + preOutput["flights"][1]["base_price"])
-            # preOutput["travel_time"] = str(totalFlightTime)
-
-            # outputList.append(preOutput)
-            #     print(preOutput)
-            #     print('---')
-            # print(outputList)
-
-            # output = json.dumps(preOutput)
-            # print(output)
-
-            # print(listOfMultiResults)
+            print(output[1:-1])
 
     except:
         print("Sorry, I'm sorry, but I couldn't find your flight. Try using different criteria.")
 
 
 def searchFlight(departure, arrival):
+    if args.bags == None:
+        bagsRequired = 0
+
     results = []
     try:
         with open(dataSource, 'rt')as f:
             data = csv.reader(f)
             for row in data:
-                if args.bags:
-                    if departure == row[1] and arrival == row[2] and bagsRequired <= int(row[7]):
-                        results.append(row)
-                else:
-                    if departure == row[1] and arrival == row[2]:
-                        results.append(row)
+                if departure == row[1] and arrival == row[2] and bagsRequired <= int(row[7]):
+                    results.append(row)
 
         listOfSingleResults = sorted(results,
                                      key=lambda row: (row[5]))
@@ -226,11 +160,10 @@ def searchFlight(departure, arrival):
                     "bags_count": int(bagsRequired),
                     "destination": finalDestination,
                     "origin": originDestination,
-                    "total_price": float(element[5]),
+                    "total_price": float(int(element[6]) * int(element[7]) + float((element[5]))),
                     "travel_time": str(totalFlightTime)
 
                 }]
-
                 listOfFlights.append(outputSingleFlight)
 
             output = json.dumps(listOfFlights)
