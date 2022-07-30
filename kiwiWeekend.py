@@ -1,11 +1,18 @@
 import csv
 import datetime
-import sys
+import argparse
 
-originDestination = str(sys.argv[2])  # PRG DHE
-finalDestination = str(sys.argv[3])  # BRN NRX
-dataSource = str(sys.argv[1])  # "example1.csv"
-bagsRequired = int(sys.argv[4])  # 2
+parser = argparse.ArgumentParser()
+parser.add_argument('source', type=str)
+parser.add_argument('departure', type=str)
+parser.add_argument('arrival', type=str)
+parser.add_argument('--bags', type=int)
+args = parser.parse_args()
+
+originDestination = args.departure  
+finalDestination = args.arrival  
+dataSource = args.source
+bagsRequired = args.bags
 
 listOfSingleResults = []
 listOfMultiResults = []
@@ -19,8 +26,12 @@ def noDirectConnection(arrival):
             data = csv.reader(f)
 
             for row in data:
-                if arrival == row[2] and bagsRequired <= int(row[7]):
-                    semiResults.append(row)
+                if args.bags:
+                    if arrival == row[2] and bagsRequired <= int(row[7]):
+                        semiResults.append(row)
+                else:
+                    if arrival == row[2]:
+                        semiResults.append(row)
 
             for i in range(len(semiResults)):
                 with open(dataSource, 'rt')as f:
@@ -66,10 +77,13 @@ def searchFlight(departure, arrival):
     try:
         with open(dataSource, 'rt')as f:
             data = csv.reader(f)
-
             for row in data:
-                if departure == row[1] and arrival == row[2] and bagsRequired <= int(row[7]):
-                    results.append(row)
+                if args.bags:
+                    if departure == row[1] and arrival == row[2] and bagsRequired <= int(row[7]):
+                        results.append(row)
+                else:
+                    if departure == row[1] and arrival == row[2]:
+                        results.append(row)
 
         listOfSingleResults = sorted(results,
                                      key=lambda row: (row[5]))

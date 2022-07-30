@@ -15,24 +15,24 @@ In case there are no direct flights, *noDirectConnection* is called. This functi
 The command link takes a few arguments
 
 
-| Argument      | Type   | Description                |
-| ------------- | ------ | -------------------------- |
-| `data sourse` | String | with .csv suffix           |
-| `departure`   | String | three letters airport code |
-| `arrival`     | String | three letters airport code |
-| `bags`        | int    | number of bags             |
+| Argument      | Type   | Description                          |
+| ------------- | ------ | ------------------------------------ |
+| `data sourse` | String | with .csv suffix                     |
+| `departure`   | String | three letters airport code           |
+| `arrival`     | String | three letters airport code           |
+| `bags`        | int    | number of bags */optional argument/* |
 
 
 **Example input**
 
 Search all flights from *DHE* to *NRW* with *2* bags:
 ```
-python3 kiwiWeekend.py example1.csv DHE NRW 2
+python3 kiwiWeekend.py data.csv PRG STN --bags=3
 ```
 
 **Example output**
 ```
-tbd
+[['FR1274', 'PRG', 'STN', '2021-09-01T01:50:00', '2021-09-01T05:55:00', '142.0', '14', '3']]
 ```
 
 
