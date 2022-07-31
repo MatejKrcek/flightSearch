@@ -17,7 +17,7 @@ The command link takes a few arguments
 
 | Argument      | Type   | Description                          |
 | ------------- | ------ | ------------------------------------ |
-| `data sourse` | String | with .csv suffix                     |
+| `data source` | String | with .csv suffix                     |
 | `departure`   | String | three letters airport code           |
 | `arrival`     | String | three letters airport code           |
 | `bags`        | int    | number of bags */optional argument/* |
@@ -193,7 +193,7 @@ python3 solution.py data3.csv PRG LAX --bags=1
 
 ## Things to improve
 
-The program currently shows flights based on this assumption - if there is a direct connection (from A -> B), show the connection (A -> B). If there is no direct connection, look for stops (A-> B -> C). It could show both results at the same time. I believe direct flights are always cheaper, so in the end, it doesn't matter for the user.
+The program currently shows flights based on this assumption - if there is a direct connection (from A -> B), show the connection (A -> B). If there is no direct connection, look for stops (A-> B -> C). It could show both results at the same time. I believe direct flights are always cheaper, so in the end, it doesn't matter for the user. Moreover, the return option could be added. 
 
 ## Contant
 
