@@ -67,7 +67,6 @@ def noDirectConnection(arrival):
                 zip(index, listOfMultiResults))]
 
             listOfFlights = []
-            outputList = []
 
             for element in listOfMultiResults:
                 totalFlightTime = datetime.datetime.strptime(
@@ -165,7 +164,7 @@ def searchFlight(departure, arrival):
                 listOfFlights.append(outputSingleFlight[0])
 
             output = json.dumps(listOfFlights)
-            print(output) 
+            print(output)
 
     except:
         print("Sorry, I'm sorry, but I couldn't find your flight. Try using different criteria.")
