@@ -25,9 +25,9 @@ The command link takes a few arguments
 
 **Example input**
 
-Search all flights from *DHE* to *NRW* with *2* bags:
+Search all flights from *PRG* to *STN* with *2* bags:
 ```
-python3 kiwiWeekend.py data.csv PRG STN --bags=3
+python3 solution.py data.csv PRG STN --bags=2
 ```
 
 **Example output**
@@ -55,15 +55,6 @@ python3 kiwiWeekend.py data.csv PRG STN --bags=3
   }
 ]
 ```
-
-
-## Features
-
-- Search direct flights
-- Search flights with a stop
-- Add the number of bags
-- Display the flights sorted by the best (cheapest) price
-  - Even for more flights 
 
 
 ## Things to improve
