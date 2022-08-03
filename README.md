@@ -1,6 +1,6 @@
-# Flight script [Python Weekend]
+# Flight script
 
-My Python script for searching flights for Python Weekend in Barcelona.
+My Python script for searching flights.
 
 
 ## Description
